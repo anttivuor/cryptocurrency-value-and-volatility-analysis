@@ -33,6 +33,7 @@ const combineData = async (data) => {
             console.log(`PROCESSING: ${key} (${index + 1}/${dataKeys.length})`);
             data[key].forEach((row, i) => {
                 if (i === 0) return;
+                if (moment(row.date).isBefore('2015-01-01')) return;
                 const findIndex = array.findIndex((x) => moment(x.date).isSame(moment(row.date)));
                 const dayOfTheYear = moment(row.date).dayOfYear();
                 if (dayOfTheYear % 15 === 0) {
